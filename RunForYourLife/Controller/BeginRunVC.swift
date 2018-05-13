@@ -10,10 +10,18 @@ import UIKit
 
 class BeginRunVC: UIViewController {
 
+    @IBOutlet weak var mapView: MKMapView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
     }
-
+    
+    @IBAction func centerOnMapButtonPressed(_ sender: Any) {
+        
+    }
+    
+    
+    
 }
 
