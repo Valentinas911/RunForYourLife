@@ -112,7 +112,7 @@ extension CurrentRunVC: CLLocationManagerDelegate {
             startLocation = locations.first
         } else if let location = locations.last {
             runDiscane += lastLocation.distance(from: location)
-            distanceLabel.text = "\(runDiscane)"
+            distanceLabel.text = "\(runDiscane.metersToKilometers(places: 2))"
         }
         
         lastLocation = locations.last
