@@ -7,32 +7,61 @@
 //
 
 import UIKit
+import MapKit
 
 class CurrentRunVC: LocationVC, UIGestureRecognizerDelegate {
 
-    @IBOutlet weak var distanceLabel: UILabel!
-    @IBOutlet weak var timeLabel: UILabel!
-    @IBOutlet weak var avgPaceLabel: UILabel!
+    @IBOutlet private weak var distanceLabel: UILabel!
+    @IBOutlet private weak var durationLabel: UILabel!
+    @IBOutlet private weak var avgPaceLabel: UILabel!
     
-    @IBOutlet weak var swipeBGImageView: UIImageView!
-    @IBOutlet weak var sliderImageView: UIImageView!
+    @IBOutlet private weak var swipeBGImageView: UIImageView!
+    @IBOutlet private weak var sliderImageView: UIImageView!
+    
+    private var startLocation: CLLocation!
+    private var lastLocation: CLLocation!
+    private var runDiscane = 0.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        checkLocationAuthStatus()
+        addPanGesture()
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        manager?.delegate = self
+        manager?.distanceFilter = 10
+        startRun()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(true)
+        manager?.stopUpdatingLocation()
+    }
+    
+    
+    @IBAction fileprivate func pauseRunButtonPressed(_ sender: Any) {
+        
+    }
+    
+    fileprivate func startRun() {
+        manager?.startUpdatingLocation()
+    }
+    
+    fileprivate func endRun() {
+        manager?.stopUpdatingLocation()
+    }
+    
+    fileprivate func addPanGesture() {
         let swipeGesture = UIPanGestureRecognizer(target: self, action: #selector(endRunSwiped(sender:)))
         sliderImageView.addGestureRecognizer(swipeGesture)
         sliderImageView.isUserInteractionEnabled = true
         swipeGesture.delegate = self
-
     }
     
-    
-    @IBAction func pauseRunButtonPressed(_ sender: Any) {
-        
-    }
-    
-    @objc func endRunSwiped(sender: UIPanGestureRecognizer) {
+    @objc fileprivate func endRunSwiped(sender: UIPanGestureRecognizer) {
         let minAdjust: CGFloat = 60
         
         let maxAdjust: CGFloat = 100
@@ -64,9 +93,30 @@ class CurrentRunVC: LocationVC, UIGestureRecognizerDelegate {
                 }
             }
         }
-        
-        
     }
     
+    
+}
+
+extension CurrentRunVC: CLLocationManagerDelegate {
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if status == .authorizedWhenInUse {
+            checkLocationAuthStatus()
+
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if startLocation == nil {
+            startLocation = locations.first
+        } else if let location = locations.last {
+            runDiscane += lastLocation.distance(from: location)
+            distanceLabel.text = "\(runDiscane)"
+        }
+        
+        lastLocation = locations.last
+        
+    }
     
 }

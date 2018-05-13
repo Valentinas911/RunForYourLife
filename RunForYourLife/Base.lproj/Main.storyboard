@@ -135,7 +135,7 @@
                                 <rect key="frame" x="0.0" y="186.5" width="375" height="230.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="N5G-PW-z2m">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="N5G-PW-z2m">
                                 <rect key="frame" x="147" y="477" width="81.5" height="56"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Fx-R0-VBZ">
@@ -144,17 +144,17 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="bottom" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="Xjw-2I-H1b">
-                                        <rect key="frame" x="0.0" y="32" width="81.5" height="24"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="bottom" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Xjw-2I-H1b">
+                                        <rect key="frame" x="15" y="32" width="51.5" height="24"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kwg-mj-kwb">
-                                                <rect key="frame" x="0.0" y="0.0" width="39" height="24"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="28" height="24"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="mi" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C1T-wy-QqI">
-                                                <rect key="frame" x="43" y="6" width="38.5" height="18"/>
+                                                <rect key="frame" x="36" y="6" width="15.5" height="18"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -227,9 +227,9 @@
                     <connections>
                         <outlet property="avgPaceLabel" destination="F7t-yo-oqf" id="D42-TS-rfI"/>
                         <outlet property="distanceLabel" destination="kwg-mj-kwb" id="AGa-Il-E5D"/>
+                        <outlet property="durationLabel" destination="kGF-xX-3Dl" id="cbL-br-FFw"/>
                         <outlet property="sliderImageView" destination="Qmo-Ls-t6A" id="ZYA-ea-amb"/>
                         <outlet property="swipeBGImageView" destination="CtX-86-YTJ" id="n4X-hv-VRI"/>
-                        <outlet property="timeLabel" destination="kGF-xX-3Dl" id="cbL-br-FFw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ARB-hL-SWl" userLabel="First Responder" sceneMemberID="firstResponder"/>
