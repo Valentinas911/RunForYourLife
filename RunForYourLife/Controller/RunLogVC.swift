@@ -1,5 +1,5 @@
 //
-//  SecondViewController.swift
+//  RunLogVC.swift
 //  RunForYourLife
 //
 //  Created by Valentinas Mirosnicenko on 5/13/18.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SecondViewController: UIViewController {
+class RunLogVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
