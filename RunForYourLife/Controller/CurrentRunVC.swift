@@ -21,6 +21,9 @@ class CurrentRunVC: LocationVC, UIGestureRecognizerDelegate {
     private var startLocation: CLLocation!
     private var lastLocation: CLLocation!
     private var runDiscane = 0.0
+    private var timerSeconds = 0
+    private var timer = Timer()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,10 +51,21 @@ class CurrentRunVC: LocationVC, UIGestureRecognizerDelegate {
     
     fileprivate func startRun() {
         manager?.startUpdatingLocation()
+        startTimer()
     }
     
     fileprivate func endRun() {
         manager?.stopUpdatingLocation()
+    }
+    
+    fileprivate func startTimer() {
+        durationLabel.text = timerSeconds.formatTimeDurationToString()
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateCounter), userInfo: nil, repeats: true)
+    }
+    
+    @objc fileprivate func updateCounter() {
+        timerSeconds += 1
+        durationLabel.text = timerSeconds.formatTimeDurationToString()
     }
     
     fileprivate func addPanGesture() {
@@ -94,7 +108,6 @@ class CurrentRunVC: LocationVC, UIGestureRecognizerDelegate {
             }
         }
     }
-    
     
 }
 
