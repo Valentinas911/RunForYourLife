@@ -164,27 +164,30 @@
                                 </subviews>
                             </stackView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="endRunOutline" translatesAutoresizingMaskIntoConstraints="NO" id="CtX-86-YTJ">
-                                <rect key="frame" x="72" y="583" width="232" height="60"/>
+                                <rect key="frame" x="56.5" y="583" width="232" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="w6w-pE-e12"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="END RUN" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Cr-70-n5R">
-                                <rect key="frame" x="168.5" y="603.5" width="71.5" height="19"/>
+                                <rect key="frame" x="153" y="603.5" width="71.5" height="19"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dta-2N-5YA">
-                                <rect key="frame" x="262" y="583" width="60" height="60"/>
+                                <rect key="frame" x="246.5" y="583" width="60" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="Rrn-QX-IZL"/>
                                     <constraint firstAttribute="width" constant="60" id="Zc7-Qm-ZSl"/>
                                 </constraints>
                                 <state key="normal" image="pauseButton"/>
+                                <connections>
+                                    <action selector="pauseRunButtonPressed:" destination="NPB-Tb-UI3" eventType="touchUpInside" id="mC9-Gp-kpV"/>
+                                </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="endRunButton" translatesAutoresizingMaskIntoConstraints="NO" id="Qmo-Ls-t6A">
-                                <rect key="frame" x="102" y="588" width="50" height="50"/>
+                                <rect key="frame" x="86.5" y="588" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="DBL-O8-zcQ"/>
                                     <constraint firstAttribute="height" constant="50" id="Ict-zg-Y8Q"/>
@@ -203,7 +206,7 @@
                             <constraint firstItem="kGF-xX-3Dl" firstAttribute="centerX" secondItem="MsY-j1-7aF" secondAttribute="centerX" id="F0p-qH-TqL"/>
                             <constraint firstItem="kGF-xX-3Dl" firstAttribute="centerX" secondItem="MsY-j1-7aF" secondAttribute="centerX" id="Haz-3j-lDp"/>
                             <constraint firstItem="CtX-86-YTJ" firstAttribute="leading" secondItem="Qmo-Ls-t6A" secondAttribute="trailing" constant="-80" id="Hg1-cJ-fEr"/>
-                            <constraint firstItem="CtX-86-YTJ" firstAttribute="centerX" secondItem="MsY-j1-7aF" secondAttribute="centerX" id="Hjl-rd-xgV"/>
+                            <constraint firstItem="CtX-86-YTJ" firstAttribute="centerX" secondItem="MsY-j1-7aF" secondAttribute="centerX" constant="-15" id="Hjl-rd-xgV"/>
                             <constraint firstItem="Htn-Vv-jrG" firstAttribute="leading" secondItem="Nir-32-CRh" secondAttribute="leading" id="Pgq-z3-hQz"/>
                             <constraint firstItem="N5G-PW-z2m" firstAttribute="centerX" secondItem="MsY-j1-7aF" secondAttribute="centerX" id="RnK-kg-sM3"/>
                             <constraint firstItem="Htn-Vv-jrG" firstAttribute="top" secondItem="MsY-j1-7aF" secondAttribute="top" id="SO3-xR-m0f"/>
@@ -221,6 +224,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Nir-32-CRh"/>
                     </view>
+                    <connections>
+                        <outlet property="avgPaceLabel" destination="F7t-yo-oqf" id="D42-TS-rfI"/>
+                        <outlet property="distanceLabel" destination="kwg-mj-kwb" id="AGa-Il-E5D"/>
+                        <outlet property="sliderImageView" destination="Qmo-Ls-t6A" id="ZYA-ea-amb"/>
+                        <outlet property="swipeBGImageView" destination="CtX-86-YTJ" id="n4X-hv-VRI"/>
+                        <outlet property="timeLabel" destination="kGF-xX-3Dl" id="cbL-br-FFw"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ARB-hL-SWl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
