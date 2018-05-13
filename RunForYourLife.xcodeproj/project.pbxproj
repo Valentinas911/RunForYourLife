@@ -56,15 +56,63 @@
 		52509AAD20A7EE0F00E2A977 /* RunForYourLife */ = {
 			isa = PBXGroup;
 			children = (
+				52509AC720A7EFCF00E2A977 /* Model */,
+				52509AC620A7EFCB00E2A977 /* View */,
+				52509AC520A7EFC400E2A977 /* Controller */,
+				52509AC420A7EFB700E2A977 /* Utilities */,
+				52509AC320A7EFB200E2A977 /* Extensions */,
+				52509AC220A7EFA500E2A977 /* Resources */,
 				52509AAE20A7EE0F00E2A977 /* AppDelegate.swift */,
-				52509AB020A7EE0F00E2A977 /* FirstViewController.swift */,
-				52509AB220A7EE0F00E2A977 /* SecondViewController.swift */,
 				52509AB420A7EE0F00E2A977 /* Main.storyboard */,
-				52509AB720A7EE1000E2A977 /* Assets.xcassets */,
 				52509AB920A7EE1000E2A977 /* LaunchScreen.storyboard */,
+				52509AB720A7EE1000E2A977 /* Assets.xcassets */,
 				52509ABC20A7EE1000E2A977 /* Info.plist */,
 			);
 			path = RunForYourLife;
+			sourceTree = "<group>";
+		};
+		52509AC220A7EFA500E2A977 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		52509AC320A7EFB200E2A977 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		52509AC420A7EFB700E2A977 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		52509AC520A7EFC400E2A977 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				52509AB020A7EE0F00E2A977 /* FirstViewController.swift */,
+				52509AB220A7EE0F00E2A977 /* SecondViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		52509AC620A7EFCB00E2A977 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		52509AC720A7EFCF00E2A977 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
