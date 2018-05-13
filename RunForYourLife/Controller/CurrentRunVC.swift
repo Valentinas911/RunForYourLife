@@ -14,6 +14,7 @@ class CurrentRunVC: LocationVC, UIGestureRecognizerDelegate {
     @IBOutlet private weak var distanceLabel: UILabel!
     @IBOutlet private weak var durationLabel: UILabel!
     @IBOutlet private weak var avgPaceLabel: UILabel!
+    @IBOutlet weak var pauseButton: UIButton!
     
     @IBOutlet private weak var swipeBGImageView: UIImageView!
     @IBOutlet private weak var sliderImageView: UIImageView!
@@ -22,6 +23,7 @@ class CurrentRunVC: LocationVC, UIGestureRecognizerDelegate {
     private var lastLocation: CLLocation!
     private var runDiscane = 0.0
     private var timerSeconds = 0
+    private var avgPace = 0
     private var timer = Timer()
     
     
@@ -46,16 +48,30 @@ class CurrentRunVC: LocationVC, UIGestureRecognizerDelegate {
     
     
     @IBAction fileprivate func pauseRunButtonPressed(_ sender: Any) {
-        
+        if timer.isValid {
+            pauseRun()
+        } else {
+            startRun()
+        }
     }
     
     fileprivate func startRun() {
         manager?.startUpdatingLocation()
         startTimer()
+        pauseButton.setImage(#imageLiteral(resourceName: "pauseButton"), for: .normal)
     }
     
     fileprivate func endRun() {
         manager?.stopUpdatingLocation()
+        // Run object to Realm
+    }
+    
+    fileprivate func pauseRun() {
+        startLocation = nil
+        lastLocation = nil
+        timer.invalidate()
+        manager?.stopUpdatingLocation()
+        pauseButton.setImage(#imageLiteral(resourceName: "resumeButton"), for: .normal)
     }
     
     fileprivate func startTimer() {
@@ -66,6 +82,15 @@ class CurrentRunVC: LocationVC, UIGestureRecognizerDelegate {
     @objc fileprivate func updateCounter() {
         timerSeconds += 1
         durationLabel.text = timerSeconds.formatTimeDurationToString()
+        
+        if timerSeconds > 0 && runDiscane.metersToKilometers(places: 2) > 0 {
+            avgPaceLabel.text = updatePace(time: timerSeconds, km: runDiscane.metersToKilometers(places: 2))
+        }
+    }
+    
+    fileprivate func updatePace(time seconds: Int, km: Double) -> String {
+        avgPace = Int(Double(seconds) / km)
+        return avgPace.formatTimeDurationToString()
     }
     
     fileprivate func addPanGesture() {
@@ -90,7 +115,7 @@ class CurrentRunVC: LocationVC, UIGestureRecognizerDelegate {
                 } else if sliderView.center.x >= (swipeBGImageView.center.x + maxAdjust) {
                     sliderView.center.x = (swipeBGImageView.center.x + maxAdjust)
                     
-                    // End run
+                    endRun()
                     
                     dismiss(animated: true, completion: nil)
                     
@@ -126,6 +151,9 @@ extension CurrentRunVC: CLLocationManagerDelegate {
         } else if let location = locations.last {
             runDiscane += lastLocation.distance(from: location)
             distanceLabel.text = "\(runDiscane.metersToKilometers(places: 2))"
+            
+            
+            
         }
         
         lastLocation = locations.last
