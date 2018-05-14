@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		52129F8F20A9990A00192E4F /* Run.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52129F8E20A9990A00192E4F /* Run.swift */; };
+		52129F9120A99E1A00192E4F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52129F9020A99E1A00192E4F /* Constants.swift */; };
 		52509AAF20A7EE0F00E2A977 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52509AAE20A7EE0F00E2A977 /* AppDelegate.swift */; };
 		52509AB120A7EE0F00E2A977 /* BeginRunVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52509AB020A7EE0F00E2A977 /* BeginRunVC.swift */; };
 		52509AB320A7EE0F00E2A977 /* RunLogVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52509AB220A7EE0F00E2A977 /* RunLogVC.swift */; };
@@ -25,6 +26,7 @@
 		2650195F4118804C2619528F /* Pods-RunForYourLife.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunForYourLife.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RunForYourLife/Pods-RunForYourLife.debug.xcconfig"; sourceTree = "<group>"; };
 		41D5652AF565783DD9A025FE /* Pods-RunForYourLife.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunForYourLife.release.xcconfig"; path = "Pods/Target Support Files/Pods-RunForYourLife/Pods-RunForYourLife.release.xcconfig"; sourceTree = "<group>"; };
 		52129F8E20A9990A00192E4F /* Run.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Run.swift; sourceTree = "<group>"; };
+		52129F9020A99E1A00192E4F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		52509AAB20A7EE0F00E2A977 /* RunForYourLife.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RunForYourLife.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52509AAE20A7EE0F00E2A977 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		52509AB020A7EE0F00E2A977 /* BeginRunVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeginRunVC.swift; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 		52509AC420A7EFB700E2A977 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				52129F9020A99E1A00192E4F /* Constants.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -276,6 +279,7 @@
 				52509AB120A7EE0F00E2A977 /* BeginRunVC.swift in Sources */,
 				525E665120A8097D00C5305A /* LocationVC.swift in Sources */,
 				525E665320A81A9200C5305A /* Extensions.swift in Sources */,
+				52129F9120A99E1A00192E4F /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

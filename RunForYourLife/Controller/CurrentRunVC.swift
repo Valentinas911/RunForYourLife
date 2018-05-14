@@ -63,7 +63,7 @@ class CurrentRunVC: LocationVC, UIGestureRecognizerDelegate {
     
     fileprivate func endRun() {
         manager?.stopUpdatingLocation()
-        // Run object to Realm
+        Run.addRunToRealm(pace: avgPace, distance: runDiscane, duration: timerSeconds)
     }
     
     fileprivate func pauseRun() {
