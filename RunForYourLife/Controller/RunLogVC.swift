@@ -7,13 +7,49 @@
 //
 
 import UIKit
+import RealmSwift
 
 class RunLogVC: UIViewController {
+    
+    // Outlets
+    @IBOutlet weak var tableView: UITableView!
+    
+    // Variables
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
     }
 
 }
 
+extension RunLogVC: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "LogCell", for: indexPath) as? LogCell {
+            guard let run = Run.getAllRuns()?[indexPath.row] else { return LogCell() }
+            cell.configureCell(run: run)
+            return cell
+        } else {
+            return UITableViewCell()
+        }
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return Run.getAllRuns()?.count ?? 0
+    }
+    
+    
+}
