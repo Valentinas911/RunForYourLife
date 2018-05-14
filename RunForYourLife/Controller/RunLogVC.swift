@@ -14,10 +14,6 @@ class RunLogVC: UIViewController {
     // Outlets
     @IBOutlet weak var tableView: UITableView!
     
-    // Variables
-    
-    var runs: Results<Run>?
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -28,18 +24,16 @@ class RunLogVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        
-        runs = Run.getAllRuns()
-        
+        tableView.reloadData()
     }
-
+    
 }
 
 extension RunLogVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "LogCell", for: indexPath) as? LogCell {
-            let run = runs![indexPath.row]
+            guard let run = Run.getAllRuns()?[indexPath.row] else { return UITableViewCell() }
             cell.configureCell(run: run)
             return cell
         } else {
@@ -52,7 +46,7 @@ extension RunLogVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return runs?.count ?? 0
+        return Run.getAllRuns()?.count ?? 0
     }
     
     
