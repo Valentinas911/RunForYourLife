@@ -8,19 +8,21 @@
 
 import UIKit
 import MapKit
+import RealmSwift
 
 class CurrentRunVC: LocationVC, UIGestureRecognizerDelegate {
 
     @IBOutlet private weak var distanceLabel: UILabel!
     @IBOutlet private weak var durationLabel: UILabel!
     @IBOutlet private weak var avgPaceLabel: UILabel!
-    @IBOutlet weak var pauseButton: UIButton!
+    @IBOutlet private weak var pauseButton: UIButton!
     
     @IBOutlet private weak var swipeBGImageView: UIImageView!
     @IBOutlet private weak var sliderImageView: UIImageView!
     
     private var startLocation: CLLocation!
     private var lastLocation: CLLocation!
+    private var runLocations = List<Location>()
     private var runDiscane = 0.0
     private var timerSeconds = 0
     private var avgPace = 0
@@ -63,7 +65,7 @@ class CurrentRunVC: LocationVC, UIGestureRecognizerDelegate {
     
     fileprivate func endRun() {
         manager?.stopUpdatingLocation()
-        Run.addRunToRealm(pace: avgPace, distance: runDiscane, duration: timerSeconds)
+        Run.addRunToRealm(pace: avgPace, distance: runDiscane, duration: timerSeconds, locations: runLocations)
     }
     
     fileprivate func pauseRun() {
@@ -141,7 +143,6 @@ extension CurrentRunVC: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         if status == .authorizedWhenInUse {
             checkLocationAuthStatus()
-
         }
     }
     
@@ -150,10 +151,9 @@ extension CurrentRunVC: CLLocationManagerDelegate {
             startLocation = locations.first
         } else if let location = locations.last {
             runDiscane += lastLocation.distance(from: location)
+            let newLocation = Location(latitude: Double(lastLocation.coordinate.latitude), longitude: Double(lastLocation.coordinate.longitude))
+            runLocations.insert(newLocation, at: 0)
             distanceLabel.text = "\(runDiscane.metersToKilometers(places: 2))"
-            
-            
-            
         }
         
         lastLocation = locations.last
