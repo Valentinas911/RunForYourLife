@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import RealmSwift
 
 class BeginRunVC: LocationVC {
 
@@ -46,11 +47,36 @@ class BeginRunVC: LocationVC {
     }
     
     @IBAction func centerOnMapButtonPressed(_ sender: Any) {
-        
+        centerMapOnUserLocation()
     }
     
     @IBAction func lastRunCloseButtonPressed(_ sender: Any) {
         hideLastRun(show: true)
+        centerMapOnUserLocation()
+    }
+    
+    fileprivate func centerMapOnUserLocation() {
+        mapView.userTrackingMode = .follow
+        let coordinateRegion = MKCoordinateRegionMakeWithDistance(mapView.userLocation.coordinate, 500, 500)
+        mapView.setRegion(coordinateRegion, animated: true)
+    }
+    
+    fileprivate func centerMapOnPreviousRoute(locations: List<Location>) -> MKCoordinateRegion {
+        guard let initialLocation = locations.first else { return MKCoordinateRegion() }
+        var minLatitude = initialLocation.latitude
+        var minLongitude = initialLocation.longitude
+        var maxLatitude = minLatitude
+        var maxLongitude = minLongitude
+        
+        for location in locations {
+            minLatitude = min(minLatitude, location.latitude)
+            maxLatitude = max(maxLatitude, location.latitude)
+            minLongitude = min(minLongitude, location.longitude)
+            maxLongitude = max(maxLongitude, location.longitude)
+        }
+        
+        return MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: (minLatitude + maxLatitude)/2, longitude: (minLongitude + maxLongitude)/2), span: MKCoordinateSpan(latitudeDelta: (maxLatitude - minLatitude)*1.4, longitudeDelta: (maxLongitude - minLongitude)*1.4))
+        
     }
     
     fileprivate func setupMapView() {
@@ -62,6 +88,7 @@ class BeginRunVC: LocationVC {
             hideLastRun(show: false)
         } else {
             hideLastRun(show: true)
+            centerMapOnUserLocation()
         }
     }
     
@@ -77,6 +104,8 @@ class BeginRunVC: LocationVC {
             coordinates.append(CLLocationCoordinate2D(latitude: CLLocationDegrees(location.latitude), longitude: CLLocationDegrees(location.longitude)))
         }
         
+        mapView.userTrackingMode = .none
+        mapView.setRegion(centerMapOnPreviousRoute(locations: lastRun.locations), animated: true)
         return MKPolyline(coordinates: coordinates, count: lastRun.locations.count)
     }
     
@@ -94,7 +123,6 @@ extension BeginRunVC: CLLocationManagerDelegate {
         if status == .authorizedWhenInUse {
             checkLocationAuthStatus()
             mapView.showsUserLocation = true
-            mapView.userTrackingMode = .follow
         }
     }
     
