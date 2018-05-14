@@ -23,15 +23,21 @@ class BeginRunVC: LocationVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         checkLocationAuthStatus()
-        mapView.delegate = self
+        
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        mapView.delegate = self
         manager?.delegate = self
         manager?.startUpdatingLocation()
-        getLastRun()
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        setupMapView()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -47,15 +53,31 @@ class BeginRunVC: LocationVC {
         hideLastRun(show: true)
     }
     
-    fileprivate func getLastRun() {
-        guard let lastRun = Run.getAllRuns()?.first else {
+    fileprivate func setupMapView() {
+        if let overlay = addLastRunToMap() {
+            if mapView.overlays.count > 0 {
+                mapView.removeOverlays(mapView.overlays)
+            }
+            mapView.add(overlay)
+            hideLastRun(show: false)
+        } else {
             hideLastRun(show: true)
-            return
         }
-        hideLastRun(show: false)
+    }
+    
+    fileprivate func addLastRunToMap() -> MKPolyline? {
+        guard let lastRun = Run.getAllRuns()?.first else { return nil }
         averagePaceLabel.text = "Average pace: \(lastRun.pace.formatTimeDurationToString()) min/km"
         distanceLabel.text = "Distance: \(lastRun.distance.metersToKilometers(places: 0)) km"
         durationLabel.text = "Duration: \(lastRun.duration.formatTimeDurationToString())"
+        
+        var coordinates = [CLLocationCoordinate2D]()
+        
+        for location in lastRun.locations {
+            coordinates.append(CLLocationCoordinate2D(latitude: CLLocationDegrees(location.latitude), longitude: CLLocationDegrees(location.longitude)))
+        }
+        
+        return MKPolyline(coordinates: coordinates, count: lastRun.locations.count)
     }
     
     fileprivate func hideLastRun(show:Bool) {
@@ -74,6 +96,16 @@ extension BeginRunVC: CLLocationManagerDelegate {
             mapView.showsUserLocation = true
             mapView.userTrackingMode = .follow
         }
+    }
+    
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        let polyline = overlay as! MKPolyline
+        let renderer = MKPolylineRenderer(polyline: polyline)
+        
+        renderer.strokeColor = #colorLiteral(red: 0.1764705926, green: 0.01176470611, blue: 0.5607843399, alpha: 1)
+        renderer.lineWidth = 4
+        
+        return renderer
     }
     
 }

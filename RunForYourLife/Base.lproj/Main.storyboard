@@ -329,7 +329,7 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="100" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jwD-8u-iQn">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="100" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jwD-8u-iQn">
                                 <rect key="frame" x="0.0" y="84" width="375" height="534"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
@@ -337,7 +337,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cl2-1F-oPG" id="yXo-GD-Iun">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view alpha="0.20000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jc0-pJ-aai">
@@ -384,17 +384,27 @@
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YRA-Wq-MOS">
+                                                    <rect key="frame" x="0.0" y="99" width="375" height="1"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="1" id="aTd-AG-294"/>
+                                                    </constraints>
+                                                </view>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="jc0-pJ-aai" firstAttribute="leading" secondItem="yXo-GD-Iun" secondAttribute="leading" id="0xB-ie-r7i"/>
                                                 <constraint firstItem="pe8-x5-Zrs" firstAttribute="leading" secondItem="yXo-GD-Iun" secondAttribute="leading" constant="8" id="2Ey-IY-UlS"/>
                                                 <constraint firstItem="xnP-sk-90T" firstAttribute="centerY" secondItem="yXo-GD-Iun" secondAttribute="centerY" id="Af4-5a-RGi"/>
                                                 <constraint firstAttribute="trailing" secondItem="jc0-pJ-aai" secondAttribute="trailing" id="EXZ-KN-J1c"/>
+                                                <constraint firstAttribute="trailing" secondItem="YRA-Wq-MOS" secondAttribute="trailing" id="HF1-uD-nUE"/>
                                                 <constraint firstItem="xnP-sk-90T" firstAttribute="centerX" secondItem="yXo-GD-Iun" secondAttribute="centerX" id="Kue-sU-hHu"/>
                                                 <constraint firstItem="ol5-qb-GAk" firstAttribute="leading" secondItem="xnP-sk-90T" secondAttribute="trailing" constant="16" id="Lhg-tl-LkT"/>
                                                 <constraint firstItem="ol5-qb-GAk" firstAttribute="centerY" secondItem="yXo-GD-Iun" secondAttribute="centerY" id="QdJ-bO-yKe"/>
                                                 <constraint firstItem="pe8-x5-Zrs" firstAttribute="centerY" secondItem="yXo-GD-Iun" secondAttribute="centerY" id="Zgo-9U-J53"/>
+                                                <constraint firstItem="YRA-Wq-MOS" firstAttribute="leading" secondItem="yXo-GD-Iun" secondAttribute="leading" id="ciE-r1-1og"/>
                                                 <constraint firstAttribute="bottom" secondItem="jc0-pJ-aai" secondAttribute="bottom" id="jbk-Gt-DBD"/>
+                                                <constraint firstAttribute="bottom" secondItem="YRA-Wq-MOS" secondAttribute="bottom" id="syI-OR-Yp1"/>
                                                 <constraint firstItem="jc0-pJ-aai" firstAttribute="top" secondItem="yXo-GD-Iun" secondAttribute="top" id="tOg-Tu-nAj"/>
                                                 <constraint firstItem="ol5-qb-GAk" firstAttribute="trailing" secondItem="yXo-GD-Iun" secondAttribute="trailingMargin" constant="8" id="yny-Bh-fCR"/>
                                             </constraints>

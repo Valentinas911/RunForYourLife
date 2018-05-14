@@ -48,7 +48,7 @@ extension Run {
             let run = Run(pace: pace, distance: distance, duration: duration, locations: locations)
             
             do {
-                let realm = try Realm()
+                let realm = try Realm(configuration: RealmConfig.runDataConfig)
                 try realm.write {
                     realm.add(run)
                     // Commit is optional
@@ -64,13 +64,14 @@ extension Run {
     static func getAllRuns() -> Results<Run>? {
         
         do {
-            let realm = try Realm()
+            let realm = try Realm(configuration: RealmConfig.runDataConfig)
             var runs = realm.objects(Run.self)
             runs = runs.sorted(byKeyPath: "date", ascending: false)
             return runs
         } catch {
             return nil
         }
+        
     }
     
 }
